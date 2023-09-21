@@ -1,10 +1,21 @@
+#' Get what3words location from coordinates
+#'
+#' @param lat
+#' @param lon
+#' @param language
+#' @param full_details
+#'
+#' @return
+#' @export
+#'
+#' @examples
 words_from_coords <- function(lat,
                               lon,
                               language = "en",
                               full_details = FALSE) {
 
   # Get API key from environment variable
-  key <- get_api_key()
+  key <- whatthreewords::get_api_key()
 
   # Build request
   req <- httr2::request("https://api.what3words.com/v3/") |>
