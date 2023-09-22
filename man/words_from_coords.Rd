@@ -2,13 +2,13 @@
 % Please edit documentation in R/words_from_coords.R
 \name{words_from_coords}
 \alias{words_from_coords}
-\title{Get what3words location from coordinates}
+\title{Get what3words address from coordinates}
 \usage{
-words_from_coords(lat, lon, language = "en", full_details = FALSE)
+words_from_coords(lon, lat, language = "en", full_details = FALSE)
 }
 \arguments{
 \item{full_details}{}
 }
 \description{
-Get what3words location from coordinates
+Get what3words address from coordinates
 }

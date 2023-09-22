@@ -1,4 +1,4 @@
-#' Get what3words location from coordinates
+#' Get what3words address from coordinates
 #'
 #' @param lat
 #' @param lon
@@ -18,7 +18,7 @@ words_from_coords <- function(lat,
   # Get API key from environment variable
   key <- whatthreewords::get_api_key()
 
-  # Build requests
+  # Build requests - vectorised over coordinates
   requests <- mapply(function(lat, lon, language, key)
     httr2::request("https://api.what3words.com/v3/") |>
       httr2::req_url_path_append("convert-to-3wa") |>
