@@ -41,10 +41,45 @@ words_from_coords(lat = 51.5095,
 
 ```{r}
 locations <- data.frame(name = c("utd", "wed", "fc"), 
-                        lat = c(1, 1, 1), 
-                        lon = c(1, 1, 1))
+                        lat = c(51, 52, 53), 
+                        lon = c(0, 0, 0))
+locations
+```
+
+```{r}
+
+locations$words <- words_from_coords(lat = locations$lat, 
+                                     lon = locations$lon)
+
 locations
 ```
 
 
-##
+# Get coordinates from a what3words location
+
+```{r}
+coords_from_words("hours.flesh.petal", full_details = FALSE)
+```
+## Full details
+
+```{r}
+coords_from_words("hours.flesh.petal", full_details = TRUE)
+```
+
+## Multiple locations
+
+```{r}
+coords_from_words(c("laughs.remind.fact", 
+                    "hotdog.jumping.frog", 
+                    "dream.helps.forget"), 
+                  full_details = FALSE)
+```
+
+# Different languages
+
+```{r}
+words_from_coords(lat = 10.06928, 
+                  lon = -61.41211,
+                  language = "de")
+```
+
