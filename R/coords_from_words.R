@@ -18,7 +18,9 @@ coords_from_words <- function(words,
     httr2::request("https://api.what3words.com/v3/") |>
       httr2::req_url_path_append("convert-to-coordinates") |>
       httr2::req_url_query(words = words,
-                           key = key),
+                           key = key)  |>
+      httr2::req_user_agent("whatthreewords (https://github.com/DavidASmith/whatthreewords)") |>
+      httr2::req_error(is_error = function(resp) FALSE),
     words = words,
     MoreArgs = list(key = key),
     SIMPLIFY = FALSE)
@@ -36,8 +38,20 @@ coords_from_words <- function(words,
   if(full_details) {
     out <- contents
   } else {
-    out <- contents |>
-      lapply(function(x) matrix(c(x$coordinates$lat, x$coordinates$lng), nrow = 1))
+    out <- mapply(function(content, response)
+    {if(response$status_code == 200) {
+      matrix(c(content$coordinates$lat, content$coordinates$lng),
+             nrow = 1)
+    } else {
+      msg <- paste0("ERROR: ", content$error$code, ": ", content$error$message)
+      warning(msg, call. = FALSE)
+      matrix(c(NA, NA), nrow = 1)
+    }
+    },
+    content = contents,
+    response = responses,
+    SIMPLIFY = FALSE)
+
     out <- do.call(rbind, out)
     colnames(out) <- c("lat", "lon")
   }

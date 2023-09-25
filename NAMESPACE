@@ -2,4 +2,6 @@
 
 export(coords_from_words)
 export(get_api_key)
+export(get_available_languages)
+export(get_error_from_body)
 export(words_from_coords)

@@ -4,10 +4,22 @@
 \alias{words_from_coords}
 \title{Get what3words address from coordinates}
 \usage{
-words_from_coords(lon, lat, language = "en", full_details = FALSE)
+words_from_coords(lat, lon, language = "en", full_details = FALSE)
 }
 \arguments{
-\item{full_details}{}
+\item{lat}{Latitude}
+
+\item{lon}{Longitude}
+
+\item{language}{Code for the language of the returned words.}
+
+\item{full_details}{Whether to return the full details from the API, or only
+the what3words address for the coordinates.}
+}
+\value{
+If \code{full_details} is FALSE (the default), returns a character vector
+of the what3words for the submitted coordinates. Otherwise returns a list of
+the full details returned by the API.
 }
 \description{
 Get what3words address from coordinates

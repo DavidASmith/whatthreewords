@@ -14,15 +14,33 @@ knitr::opts_chunk$set(
 )
 ```
 
+The `whatthreewords` package supports working with the [what3words](https://what3words.com/) API. what3words has partitioned the surface of the earth into 3m x 3m squares, each of which can be identified by three words. These are conventionally styled with three slashes at the beginning. For example, the peak of the Great Pyramid of Giza is located by the three words [///ballots.height.silks](https://what3words.com/ballots.height.silks).
+
+You can use the package to determine the three word address for any coordinates, or return the coordinates for any valid three word combination. 
+
+# Load the package
+
+First, load the package...
+
 ```{r setup}
 library(whatthreewords)
 ```
 
 # Set environment variable
 
+The what3words API requires a key for authentication. You can register for a key at [https://developer.what3words.com/public-api](https://developer.what3words.com/public-api).
 
+You must then set the `WTW_API_KEY` environment variable to hold your key. For example...
+
+```
+Sys.setenv(WTW_API_KEY = "MYKEY")
+```
+
+You are now ready to use the package.
 
 # Get a what3words address from coordinates
+
+Use `words_from_coords` to get a what3words location for a given latitude and longitude.
 
 ```{r}
 words_from_coords(lat = 51.5095, 
@@ -30,6 +48,8 @@ words_from_coords(lat = 51.5095,
 ```
 
 ## Full details
+
+By default, `words_from_coords` returns only the three words which represent the location. However, it's possible to return more information about the location by submitting `full_details = TRUE`.
 
 ```{r}
 words_from_coords(lat = 51.5095, 
@@ -39,12 +59,16 @@ words_from_coords(lat = 51.5095,
 
 ## Multiple locations
 
+`words_from_coords` is vectorised over the coordinates so you can return multiple locations with one call. For example, take the following data frame.
+
 ```{r}
-locations <- data.frame(name = c("utd", "wed", "fc"), 
-                        lat = c(51, 52, 53), 
-                        lon = c(0, 0, 0))
+locations <- data.frame(name = c("Sheffield United", "Sheffield Wednesday", "Sheffield Club"), 
+                        lat = c(53.3703, 53.41145, 53.3096), 
+                        lon = c(-1.47119, -1.500204, -1.478715))
 locations
 ```
+
+We can add the what3words for each row like this...
 
 ```{r}
 
@@ -78,8 +102,14 @@ coords_from_words(c("laughs.remind.fact",
 # Different languages
 
 ```{r}
-words_from_coords(lat = 10.06928, 
-                  lon = -61.41211,
+words_from_coords(lat = 48.70913, 
+                  lon = 9.001062, 
                   language = "de")
+```
+Available languages can be determined by
+
+```{r}
+get_available_languages() |> 
+  head()
 ```
 

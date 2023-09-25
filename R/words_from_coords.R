@@ -1,11 +1,14 @@
 #' Get what3words address from coordinates
 #'
-#' @param lat
-#' @param lon
-#' @param language
-#' @param full_details
+#' @param lat Latitude
+#' @param lon Longitude
+#' @param language Code for the language of the returned words.
+#' @param full_details Whether to return the full details from the API, or only
+#' the what3words address for the coordinates.
 #'
-#' @return
+#' @return If `full_details` is FALSE (the default), returns a character vector
+#' of the what3words for the submitted coordinates. Otherwise returns a list of
+#' the full details returned by the API.
 #' @export
 #'
 #' @examples
@@ -24,7 +27,9 @@ words_from_coords <- function(lat,
       httr2::req_url_path_append("convert-to-3wa") |>
       httr2::req_url_query(coordinates = paste0(lat,",",lon),
                            language = language,
-                           key = key),
+                           key = key) |>
+      httr2::req_user_agent("whatthreewords (https://github.com/DavidASmith/whatthreewords)") |>
+      httr2::req_error(is_error = function(resp) FALSE),
     lat = lat,
     lon = lon,
     MoreArgs = list(language = language,
@@ -44,8 +49,19 @@ words_from_coords <- function(lat,
   if(full_details) {
     out <- contents
   } else {
-    out <- contents |>
-      lapply(function(x) x$words) |>
+    out <-
+      mapply(function(content, response)
+      {if(response$status_code == 200) {
+        content$words
+      } else {
+        msg <- paste0("ERROR: ", content$error$code, ": ", content$error$message)
+        warning(msg, call. = FALSE)
+        msg
+      }
+      },
+      content = contents,
+      response = responses,
+      SIMPLIFY = FALSE) |>
       unlist()
   }
   out
