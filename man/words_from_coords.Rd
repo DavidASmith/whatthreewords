@@ -24,3 +24,8 @@ the full details returned by the API.
 \description{
 Get what3words address from coordinates
 }
+\examples{
+\dontshow{if (!identical(Sys.getenv("WTW_API_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+words_from_coords(lat = 51.5095, lon = -0.1266)
+\dontshow{\}) # examplesIf}
+}

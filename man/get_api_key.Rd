@@ -6,6 +6,12 @@
 \usage{
 get_api_key()
 }
+\value{
+The value of the \code{WTW_API_KEY} environment variable.
+}
 \description{
 Gets the value of the WTW_API_KEY environment variable
+}
+\examples{
+get_api_key()
 }

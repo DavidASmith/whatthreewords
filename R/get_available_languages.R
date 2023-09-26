@@ -3,7 +3,8 @@
 #' @return A dataframe of available languages.
 #' @export
 #'
-#' @examples
+#' @examplesIf !identical(Sys.getenv("WTW_API_KEY"), "")
+#' get_available_languages()
 get_available_languages <- function() {
 
   # Get API key from environment variable

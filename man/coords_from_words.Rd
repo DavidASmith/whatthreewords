@@ -4,11 +4,23 @@
 \alias{coords_from_words}
 \title{Returns the coordinates for a given what3words address}
 \usage{
-coords_from_words(words, full_details)
+coords_from_words(words, full_details = FALSE)
 }
 \arguments{
-\item{full_details}{}
+\item{words}{A what3words location}
+
+\item{full_details}{\code{FALSE} (default) to return only the coordinates.
+\code{TRUE} for full details.}
+}
+\value{
+If \code{full_details == FALSE} (the default) a matrix of WGS84
+coordinates. Otherwise a list of full details for each what3words location.
 }
 \description{
 Returns the coordinates for a given what3words address
+}
+\examples{
+\dontshow{if (!identical(Sys.getenv("WTW_API_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+coords_from_words("hotdog.jumping.frog")
+\dontshow{\}) # examplesIf}
 }

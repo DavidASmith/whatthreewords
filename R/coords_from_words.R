@@ -1,12 +1,15 @@
 #' Returns the coordinates for a given what3words address
 #'
-#' @param words
-#' @param full_details
+#' @param words A what3words location
+#' @param full_details `FALSE` (default) to return only the coordinates.
+#' `TRUE` for full details.
 #'
-#' @return
+#' @return If `full_details == FALSE` (the default) a matrix of WGS84
+#' coordinates. Otherwise a list of full details for each what3words location.
 #' @export
 #'
-#' @examples
+#' @examplesIf !identical(Sys.getenv("WTW_API_KEY"), "")
+#' coords_from_words("hotdog.jumping.frog")
 coords_from_words <- function(words,
                               full_details = FALSE) {
 

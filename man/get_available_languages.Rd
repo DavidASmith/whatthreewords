@@ -12,3 +12,8 @@ A dataframe of available languages.
 \description{
 Gets available languages for use in the what3words API
 }
+\examples{
+\dontshow{if (!identical(Sys.getenv("WTW_API_KEY"), "")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+get_available_languages()
+\dontshow{\}) # examplesIf}
+}

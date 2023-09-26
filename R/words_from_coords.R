@@ -11,7 +11,8 @@
 #' the full details returned by the API.
 #' @export
 #'
-#' @examples
+#' @examplesIf !identical(Sys.getenv("WTW_API_KEY"), "")
+#' words_from_coords(lat = 51.5095, lon = -0.1266)
 words_from_coords <- function(lat,
                               lon,
                               language = "en",
