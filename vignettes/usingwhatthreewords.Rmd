@@ -32,7 +32,7 @@ The what3words API requires a key for authentication. You can register for a key
 
 You must then set the `WTW_API_KEY` environment variable to hold your key. For example...
 
-```
+``` r
 Sys.setenv(WTW_API_KEY = "MYKEY")
 ```
 
@@ -81,10 +81,16 @@ locations
 
 # Get coordinates from a what3words location
 
+`coords_from_words` returns the coordinates for a what3words location.
+
 ```{r}
-coords_from_words("hours.flesh.petal", full_details = FALSE)
+coords_from_words("hours.flesh.petal")
 ```
+By default, coordinates are returned as a matrix with as many rows as the length of the vector submitted to the `words` argument.
+
 ## Full details
+
+You can also return the full details of the location as a list.
 
 ```{r}
 coords_from_words("hours.flesh.petal", full_details = TRUE)
@@ -92,24 +98,28 @@ coords_from_words("hours.flesh.petal", full_details = TRUE)
 
 ## Multiple locations
 
+`coords_from_words` is vectorised over words. You can return multiple 
+coordinates like this:
+
 ```{r}
 coords_from_words(c("laughs.remind.fact", 
                     "hotdog.jumping.frog", 
-                    "dream.helps.forget"), 
-                  full_details = FALSE)
+                    "dream.helps.forget"))
 ```
 
 # Different languages
+
+what3words support a range of languages. You can work in different languages by submitting a supported [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter code to `language`.
 
 ```{r}
 words_from_coords(lat = 48.70913, 
                   lon = 9.001062, 
                   language = "de")
 ```
-Available languages can be determined by
+
+Supported languages can be determined by `get_available_languages`.
 
 ```{r}
 get_available_languages() |> 
   head()
 ```
-

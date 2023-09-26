@@ -8,7 +8,7 @@
 #'
 #' @examples
 coords_from_words <- function(words,
-                              full_details) {
+                              full_details = FALSE) {
 
   # Get API key from environment variable
   key <- whatthreewords::get_api_key()
