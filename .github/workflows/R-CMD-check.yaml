@@ -26,6 +26,7 @@ jobs:
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      WTW_API_KEY: ${{ secrets.WTW_API_KEY }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
