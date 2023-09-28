@@ -5,7 +5,7 @@ Authors@R:
     person("David", "Smith", , "david.alex.smith@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0000-8482-3220"))
 Description: What the package does (one paragraph).
-License: MIT + file LICENSE.md
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

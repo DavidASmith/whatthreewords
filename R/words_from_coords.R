@@ -48,7 +48,11 @@ words_from_coords <- function(lat,
 
   # Return words or full details
   if(full_details) {
-    out <- contents
+    if(length(contents) == 1) {
+      out <- contents[[1]]
+    } else {
+      out <- contents
+    }
   } else {
     out <-
       mapply(function(content, response)
