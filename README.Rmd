@@ -19,7 +19,10 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/DavidASmith/whatthreewords/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DavidASmith/whatthreewords/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of whatthreewords is to ...
+The whatthreewords package supports working with the [what3words](https://what3words.com/) API from R. what3words has partitioned the surface of the earth into 3m x 3m squares, each of which can be identified by three words. These are conventionally styled with three slashes at the beginning. For example, the peak of the Great Pyramid of Giza is located by the three words [///ballots.height.silks](https://what3words.com/ballots.height.silks).
+
+You can use the package to determine the three word address for any coordinates, or return the coordinates for any valid three word combination. 
+
 
 ## Installation
 
@@ -30,27 +33,44 @@ You can install the development version of whatthreewords from [GitHub](https://
 devtools::install_github("DavidASmith/whatthreewords")
 ```
 
-## Example
+## Authentication
 
-This is a basic example which shows you how to solve a common problem:
+The what3words API requires a key for authentication. You can register for a key at [https://developer.what3words.com/public-api](https://developer.what3words.com/public-api).
 
-```{r example}
+You must then set the `WTW_API_KEY` environment variable to hold your key. For example...
+
+``` r
+Sys.setenv(WTW_API_KEY = "MYKEY")
+```
+
+## Examples
+
+Here are a few examples of what you can do with the package. For more details, see the vignette 'Using whatthreewords'.
+
+### Get a what3words address from coordinates
+
+Use `words_from_coords` to get a what3words location for a given latitude and longitude.
+
+```{r}
 library(whatthreewords)
-## basic example code
+
+words_from_coords(lat = 51.5095, 
+                  lon = -0.1266)
+```
+This is vectorised over `lat` and `lon`.
+
+```{r}
+words_from_coords(lat = c(53.3703, 53.41145, 53.3096), 
+                  lon = c(-1.47119, -1.500204, -1.478715))
+```
+## Get coordinates from a what3words location
+
+`coords_from_words` returns the coordinates for a what3words location.
+
+```{r}
+coords_from_words("hours.flesh.petal")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+## Alternative packages
 
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-#plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+There is an alternative R client for what3words available on [CRAN](https://cran.r-project.org/web/packages/threewords/index.html) ([Github repo](https://github.com/Ironholds/threewords)). However, this has not been updated (at time of writing) for several years and I couldn't get it to work. I needed something fairly quickly so wrote this from scratch. 
