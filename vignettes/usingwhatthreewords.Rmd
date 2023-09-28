@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `whatthreewords` package supports working with the [what3words](https://what3words.com/) API. what3words has partitioned the surface of the earth into 3m x 3m squares, each of which can be identified by three words. These are conventionally styled with three slashes at the beginning. For example, the peak of the Great Pyramid of Giza is located by the three words [///ballots.height.silks](https://what3words.com/ballots.height.silks).
+The whatthreewords package supports working with the [what3words](https://what3words.com/) API. what3words has partitioned the surface of the earth into 3m x 3m squares, each of which can be identified by three words. These are conventionally styled with three slashes at the beginning. For example, the peak of the Great Pyramid of Giza is located by the three words [///ballots.height.silks](https://what3words.com/ballots.height.silks).
 
 You can use the package to determine the three word address for any coordinates, or return the coordinates for any valid three word combination. 
 

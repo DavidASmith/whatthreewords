@@ -1,6 +1,6 @@
 Package: whatthreewords
 Title: Work with the what3words API for easy location referencing.
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("David", "Smith", , "david.alex.smith@gmail.com", 
            role = c("aut", "cre"),
