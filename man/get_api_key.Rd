@@ -13,5 +13,5 @@ The value of the \code{WTW_API_KEY} environment variable.
 Gets the value of the WTW_API_KEY environment variable
 }
 \examples{
-get_api_key()
+\dontrun{get_api_key()}
 }

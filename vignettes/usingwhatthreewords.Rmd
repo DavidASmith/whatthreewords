@@ -36,13 +36,22 @@ You must then set the `WTW_API_KEY` environment variable to hold your key. For e
 Sys.setenv(WTW_API_KEY = "MYKEY")
 ```
 
+```{r include=FALSE}
+key_present <- tryCatch({
+  whatthreewords::get_api_key()
+  TRUE
+}, 
+error = function(e) FALSE)
+```
+
+
 You are now ready to use the package.
 
 # Get a what3words address from coordinates
 
 Use `words_from_coords` to get a what3words location for a given latitude and longitude.
 
-```{r}
+```{r eval=key_present}
 words_from_coords(lat = 51.5095, 
                   lon = -0.1266)
 ```
@@ -51,7 +60,7 @@ words_from_coords(lat = 51.5095,
 
 By default, `words_from_coords` returns only the three words which represent the location. However, it's possible to return more information about the location by submitting `full_details = TRUE`.
 
-```{r}
+```{r eval=key_present}
 words_from_coords(lat = 51.5095, 
                   lon = -0.1266, 
                   full_details = TRUE)
@@ -61,7 +70,7 @@ words_from_coords(lat = 51.5095,
 
 `words_from_coords` is vectorised over the coordinates so you can return multiple locations with one call. For example, take the following data frame.
 
-```{r}
+```{r eval=key_present}
 locations <- data.frame(name = c("Sheffield United", "Sheffield Wednesday", "Sheffield Club"), 
                         lat = c(53.3703, 53.41145, 53.3096), 
                         lon = c(-1.47119, -1.500204, -1.478715))
@@ -70,7 +79,7 @@ locations
 
 We can add the what3words for each row like this...
 
-```{r}
+```{r eval=key_present}
 
 locations$words <- words_from_coords(lat = locations$lat, 
                                      lon = locations$lon)
@@ -83,7 +92,7 @@ locations
 
 `coords_from_words` returns the coordinates for a what3words location.
 
-```{r}
+```{r eval=key_present}
 coords_from_words("hours.flesh.petal")
 ```
 By default, coordinates are returned as a matrix with as many rows as the length of the vector submitted to the `words` argument.
@@ -92,7 +101,7 @@ By default, coordinates are returned as a matrix with as many rows as the length
 
 You can also return the full details of the location as a list.
 
-```{r}
+```{r eval=key_present}
 coords_from_words("hours.flesh.petal", full_details = TRUE)
 ```
 
@@ -101,7 +110,7 @@ coords_from_words("hours.flesh.petal", full_details = TRUE)
 `coords_from_words` is vectorised over words. You can return multiple 
 coordinates like this:
 
-```{r}
+```{r eval=key_present}
 coords_from_words(c("laughs.remind.fact", 
                     "hotdog.jumping.frog", 
                     "dream.helps.forget"))
@@ -111,7 +120,7 @@ coords_from_words(c("laughs.remind.fact",
 
 what3words support a range of languages. You can work in different languages by submitting a supported [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter code to `language`.
 
-```{r}
+```{r eval=key_present}
 words_from_coords(lat = 48.70913, 
                   lon = 9.001062, 
                   language = "de")
@@ -119,7 +128,7 @@ words_from_coords(lat = 48.70913,
 
 Supported languages can be determined by `get_available_languages`.
 
-```{r}
+```{r eval=key_present}
 get_available_languages() |> 
   head()
 ```
