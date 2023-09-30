@@ -73,4 +73,4 @@ coords_from_words("hours.flesh.petal")
 
 ## Alternative packages
 
-There is an alternative R client for what3words available on [CRAN](https://cran.r-project.org/web/packages/threewords/index.html) ([Github repo](https://github.com/Ironholds/threewords)). However, this has not been updated (at time of writing) for several years and I couldn't get it to work. I needed something fairly quickly so wrote this from scratch. 
+There is an alternative R client for what3words available on [CRAN](https://CRAN.R-project.org/package=threewords) ([Github repo](https://github.com/Ironholds/threewords)). However, this has not been updated (at time of writing) for several years and I couldn't get it to work. I needed something fairly quickly so wrote this from scratch. 
