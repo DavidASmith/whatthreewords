@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/DavidASmith/whatthreewords/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/DavidASmith/whatthreewords/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/whatthreewords)](https://CRAN.R-project.org/package=whatthreewords)
 <!-- badges: end -->
 
 The whatthreewords package supports working with the
