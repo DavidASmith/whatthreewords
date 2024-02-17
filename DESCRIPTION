@@ -23,4 +23,5 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-URL: https://davidasmith.github.io/whatthreewords/
+URL: https://davidasmith.github.io/whatthreewords/, https://github.com/DavidASmith/whatthreewords
+BugReports: https://github.com/DavidASmith/whatthreewords/issues
